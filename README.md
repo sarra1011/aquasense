@@ -41,7 +41,7 @@ AquaSense est une application IoT + IA qui permet de :
 | Compteur d'eau | Source de données à surveiller |
 | Alimentation 5V | Alimente l'ESP32-CAM |
 
-> L'ESP32-CAM envoie les images JPG au backend via Wi-Fi — aucun câblage supplémentaire requis.
+> L'ESP32-CAM envoie les images JPG au backend via Wi-Fi , aucun câblage supplémentaire requis.
 
 ## 🚀 Installation
 
@@ -267,7 +267,6 @@ Remove-Item -Path "aquasense-backend/data/aquasense.db" -Force
 - [ ] Application mobile native (React Native)
 - [ ] Remplacement SQLite → PostgreSQL pour la production
 - [ ] Tableau de bord administrateur
-- [ ] Support de plusieurs langues (FR / AR / EN)
 
 ## 📝 Licence
 
