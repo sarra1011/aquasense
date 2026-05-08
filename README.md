@@ -108,7 +108,7 @@ Il classe chaque relevé en **6 catégories** : `normal`, `surconsommation`, `fu
 ---
 
 
-### Fichiers requis
+### 📁Fichiers requis
 
 Pour activer la détection d'anomalies par IA, placer les fichiers suivants dans `aquasense-backend/ai_models/` :
 
