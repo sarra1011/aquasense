@@ -1,51 +1,82 @@
+```markdown
+# 🌊 AquaSense — Surveillance Intelligente de l'Eau
 
-# AquaSense — Surveillance Intelligente de l'Eau
+> **Application mobile de surveillance intelligente des compteurs d'eau avec détection d'anomalies par IA**
 
-# AquaSense — Surveillance Intelligente de l'Eau
+---
 
-![Python](https://img.shields.io/badge/Python-3.11-blue)
-![React](https://img.shields.io/badge/React-18-61DAFB)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.100-009688)
-![License](https://img.shields.io/badge/Licence-Prototype-orange)
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python" />
+  <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
+  <img src="https://img.shields.io/badge/FastAPI-0.100-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI" />
+  <img src="https://img.shields.io/badge/Licence-Prototype-orange?style=for-the-badge" alt="Licence" />
+</p>
 
-Application mobile de surveillance intelligente des compteurs d'eau avec détection d'anomalies par IA.
+---
+
+## 💡 Navigation Rapide
+
+- [🏠 Description](#-description)
+- [📱 Aperçu de l'Application](#-aperçu-de-lapplication)
+- [📋 Prérequis & Matériel](#-prérequis--matériel)
+- [🚀 Installation](#-installation)
+- [🤖 Modèles IA](#-modèles-ia)
+- [👤 Compte de Test](#-compte-de-test)
+- [📁 Structure du Projet](#-structure-du-projet)
+- [🛠️ Technologies](#️-technologies)
+- [📊 Seuils de Consommation](#-seuils-de-consommation-m³h)
+- [🔌 API Endpoints](#-api-endpoints)
+- [🔧 Commandes Utiles](#-commandes-utiles)
+- [🗺️ Roadmap](#️-roadmap)
+
+---
 
 ## 🏠 Description
 
-AquaSense est une application IoT + IA qui permet de :
-- Surveiller sa consommation d'eau en temps réel
-- Détecter les anomalies de consommation (fuites, surconsommation)
-- Recevoir des alertes intelligentes
-- Analyser l'historique de consommation
-- Configurer des seuils personnalisés par type de bâtiment
+**AquaSense** est une solution complète IoT + IA conçue pour transformer la gestion de la ressource en eau :
 
-  
+* 📊 **Surveillance en temps réel** de la consommation d'eau.
+* 🚨 **Détection automatique d'anomalies** (fuites, surconsommation, anomalies saisonnières).
+* 🔔 **Système d'alertes intelligentes** instantanées.
+* 📈 **Analyse de l'historique** et tendances de consommation.
+* ⚙️ **Seuils personnalisables** selon le type de bâtiment (résidentiel, commercial, industriel).
+
+---
+
 ## 📱 Aperçu de l'Application
 
-| Login | Dashboard | Alertes | Profil |
-|-------|-----------|---------|--------|
+<div align="center">
+
+| 🔐 Login | 📊 Dashboard | 🔔 Alertes | 👤 Profil |
+| :---: | :---: | :---: | :---: |
 | ![](assets/screen_login.png.jpeg) | ![](assets/screen_dashboard.png.jpeg) | ![](assets/screen_alerts.png.jpeg) | ![](assets/screen_profile.png.jpeg) |
 
+</div>
 
-## 📋 Prérequis
+---
 
-- **Python** : 3.11+
-- **Node.js** : 18+
-- **npm** : 9+
+## 📋 Prérequis & Matériel
 
-## 📷 Matériel Requis
+### 🖥️ Environnement Logiciel
+* **Python** : `3.11+`
+* **Node.js** : `18+`
+* **npm** : `9+`
+
+### 📷 Matériel Requis
 
 | Composant | Rôle |
-|-----------|------|
-| ESP32-CAM | Capture l'image du compteur et l'envoie au backend |
-| Compteur d'eau | Source de données à surveiller |
-| Alimentation 5V | Alimente l'ESP32-CAM |
+| :--- | :--- |
+| **ESP32-CAM** | Capture l'image du compteur et l'envoie au backend via Wi-Fi |
+| **Compteur d'eau** | Source de données à surveiller |
+| **Alimentation 5V** | Alimente le module ESP32-CAM |
 
-> L'ESP32-CAM envoie les images JPG au backend via Wi-Fi , aucun câblage supplémentaire requis.
+> ℹ️ **Note :** L'ESP32-CAM envoie les images JPG au backend via Wi-Fi, aucun câblage supplémentaire n'est requis.
+
+---
 
 ## 🚀 Installation
 
-### Frontend (React + Vite)
+### 1. Frontend (React + Vite)
 
 ```bash
 # Installer les dépendances
@@ -55,9 +86,9 @@ npm install
 npm run dev
 ```
 
-L'application sera disponible sur : `http://localhost:5173`
+📍 Application disponible sur : `http://localhost:5173`
 
-### Backend (FastAPI)
+### 2. Backend (FastAPI)
 
 ```bash
 # Aller dans le dossier backend
@@ -70,172 +101,193 @@ py -3.11 -m pip install -r requirements.txt
 py -3.11 -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-L'API sera disponible sur : `http://127.0.0.1:8000`
-- Documentation Swagger : `http://127.0.0.1:8000/docs`
+📍 API disponible sur : `http://127.0.0.1:8000`  
+📖 Documentation Swagger interactive : `http://127.0.0.1:8000/docs`
 
-## 🤖 Modèles IA 
+---
+
+## 🤖 Modèles IA
 
 ### Vue d'ensemble du pipeline complet
 
-![Pipeline de traitement complet](assets/pipeline_overview.png)
+<p align="center">
+  <img src="assets/pipeline_overview.png" alt="Pipeline de traitement complet" width="800" />
+</p>
 
-Le pipeline se divise en deux branches :
-- **OCR** (< 100 ms) : lecture des m³ depuis la caméra
-- **XGBoost** (< 10 ms) : classification de l'anomalie en 6 classes
+Le pipeline de traitement se divise en deux branches complémentaires :
+* 🔍 **OCR** (`< 100 ms`) : Lecture automatique de l'index en m³ depuis la capture caméra.
+* ⚡ **XGBoost** (`< 10 ms`) : Classification temps réel de l'anomalie parmi 6 classes.
 
 ---
 
-### Module OCR — 2 étapes
+### Module OCR — 2 ÉTAPES
 
-La lecture des chiffres se fait en deux passes YOLOv8 successives :
+La lecture des chiffres repose sur deux passes YOLOv8 successives :
 
-![Pipeline OCR](assets/ocr_pipeline.png)
+<p align="center">
+  <img src="assets/ocr_pipeline.png" alt="Pipeline OCR" width="700" />
+</p>
 
 | Étape | Modèle | Rôle |
-|-------|--------|------|
-| Stage 1 | `best.pt` (YOLOv8n-seg) | Segmentation — isole la fenêtre de chiffres |
-| Stage 2 | `best.pt` (YOLOv8n-det) | Détection 0–9 — lit chaque chiffre |
+| :---: | :--- | :--- |
+| **Stage 1** | `best.pt` (YOLOv8n-seg) | **Segmentation** — Isole la zone d'affichage des chiffres |
+| **Stage 2** | `best.pt` (YOLOv8n-det) | **Détection 0–9** — Identifie et lit chaque chiffre individuellement |
 
 ---
 
-### Détection d'anomalies — XGBoost
+### Détection d'Anomalies — XGBoost
 
-![Comparaison des modèles](assets/model_accuracy.png)
+<p align="center">
+  <img src="assets/model_accuracy.png" alt="Comparaison des modèles" width="600" />
+</p>
 
-XGBoost atteint **90,4 % d'accuracy** et un **F1-score de 0,904**, le meilleur des trois modèles testés.
-Il classe chaque relevé en **6 catégories** : `normal`, `surconsommation`, `fuite_nocturne`, `anomalie_saisonniere`, `pic_inhabituel`, `conso_nulle`.
+Le modèle **XGBoost** surpasse les autres algorithmes évalués avec **90,4 % d'accuracy** et un **F1-score de 0,904**.  
+Il catégorise chaque relevé parmi **6 catégories** :
+
+`normal` | `surconsommation` | `fuite_nocturne` | `anomalie_saisonniere` | `pic_inhabituel` | `conso_nulle`
 
 ---
 
+### 📁 Fichiers Requis pour l'IA
 
-### 📁 Fichiers requis
-
-Pour activer la détection d'anomalies par IA, placer les fichiers suivants dans `aquasense-backend/ai_models/` :
+Pour activer l'ensemble des modules d'IA, placez les fichiers suivants dans `aquasense-backend/ai_models/` :
 
 | Fichier | Description |
-|---------|-------------|
-| `best.pt` | Modèle YOLOv8 pour la détection de chiffres |
+| :--- | :--- |
+| `best.pt` | Modèle YOLOv8 pour la détection et lecture de chiffres |
 | `best_model.pkl` | Modèle XGBoost pour la classification d'anomalies |
-| `scaler.pkl` | Scaler pour la normalisation des données |
-| `le_building.pkl` | LabelEncoder pour les types de bâtiments |
-| `le_season.pkl` | LabelEncoder pour les saisons |
-| `metadata.json` | Métadonnées du modèle |
+| `scaler.pkl` | Normaliseur de données |
+| `le_building.pkl` | LabelEncoder pour le type de bâtiment |
+| `le_season.pkl` | LabelEncoder pour la saisonnalité |
+| `metadata.json` | Métadonnées de configuration du modèle |
 
-> **Note :** Sans ces fichiers, le système utilise des seuils heuristiques.
+> ⚠️ **Note :** En l'absence de ces fichiers, le backend bascule automatiquement sur des règles heuristiques.
+
+---
 
 ## 👤 Compte de Test
 
-```
-Email : demo@aquasense.tn
-Mot de passe : password123
-```
+> **Email :** `demo@aquasense.tn`  
+> **Mot de passe :** `password123`
+
+---
 
 ## 📁 Structure du Projet
 
-```
+```text
 AquaSense Mobile App Prototype/
 ├── src/                          # Frontend React
-│   ├── api/                      # Appels API
-│   │   ├── auth.ts              # Authentification
-│   │   ├── users.ts             # Gestion utilisateurs
-│   │   ├── readings.ts          # Relevés de consommation
-│   │   └── alerts.ts            # Alertes
+│   ├── api/                      # Appels API HTTP
+│   │   ├── auth.ts               # Authentification
+│   │   ├── users.ts              # Gestion utilisateurs
+│   │   ├── readings.ts           # Relevés de consommation
+│   │   └── alerts.ts             # Alertes
 │   ├── app/
 │   │   ├── components/
-│   │   │   ├── screens/         # Écrans de l'app
+│   │   │   ├── screens/          # Écrans principaux
 │   │   │   │   ├── LoginScreen.tsx
 │   │   │   │   ├── RegisterScreen.tsx
 │   │   │   │   ├── DashboardScreen.tsx
 │   │   │   │   ├── ProfileScreen.tsx
 │   │   │   │   ├── AlertsScreen.tsx
 │   │   │   │   └── ...
-│   │   │   └── ui/              # Composants UI (shadcn)
-│   │   └── routes.tsx           # Routes React Router
-│   └── styles/                  # CSS, Tailwind
+│   │   │   └── ui/               # Composants UI (shadcn)
+│   │   └── routes.tsx            # Navigation React Router
+│   └── styles/                   # Styles globaux (Tailwind CSS)
 │
-├── aquasense-backend/           # Backend FastAPI
-│   ├── routes/                  # Endpoints API
-│   │   ├── auth.py              # /auth/login, /auth/register
-│   │   ├── users.py             # /users/{id}
-│   │   ├── readings.py          # /readings/*
-│   │   ├── alerts.py            # /alerts/*
-│   │   └── settings_api.py      # /settings/*
-│   ├── models/                  # Modèles IA
-│   │   ├── anomaly.py           # Détection d'anomalies
-│   │   └── yolo_ocr.py          # OCR YOLO
-│   ├── services/                # Logique métier
-│   ├── database.py              # SQLAlchemy + SQLite
-│   ├── main.py                  # Point d'entrée FastAPI
-│   └── requirements.txt         # Dépendances Python
+├── aquasense-backend/            # Backend FastAPI
+│   ├── routes/                   # Endpoints API REST
+│   │   ├── auth.py               # /auth/login, /auth/register
+│   │   ├── users.py              # /users/{id}
+│   │   ├── readings.py           # /readings/*
+│   │   ├── alerts.py             # /alerts/*
+│   │   └── settings_api.py       # /settings/*
+│   ├── models/                   # Modèles & Pipelines IA
+│   │   ├── anomaly.py            # Détection d'anomalies XGBoost
+│   │   └── yolo_ocr.py           # Engine OCR YOLOv8
+│   ├── services/                 # Métier & Services
+│   ├── database.py               # Config SQLAlchemy & SQLite
+│   ├── main.py                   # Point d'entrée FastAPI
+│   └── requirements.txt          # Dépendances Python
 │
-├── package.json                 # Dépendances npm
-├── vite.config.ts               # Configuration Vite
-└── README.md                    # Ce fichier
+├── package.json                  # Dépendances Node.js / Scripts
+├── vite.config.ts                # Configuration Vite
+└── README.md                     # Documentation
 ```
+
+---
 
 ## 🛠️ Technologies
 
-| Catégorie | Technologie |
-|-----------|-------------|
+| Domaines | Stack Technologique |
+| :--- | :--- |
 | **Frontend** | React 18, TypeScript, Vite, Tailwind CSS, Recharts |
 | **Backend** | FastAPI, Python 3.11, SQLAlchemy, SQLite |
-| **IA/ML** | YOLOv8 (OCR), XGBoost (classification), EasyOCR |
-| **Auth** | JWT (python-jose), bcrypt |
-| **API** | REST, OpenAPI/Swagger |
+| **IA & Vision** | YOLOv8 (OCR), XGBoost (Classification), EasyOCR |
+| **Sécurité** | JWT (python-jose), bcrypt |
+| **Spécifications API** | REST Architecture, OpenAPI / Swagger |
+
+---
 
 ## 📊 Seuils de Consommation (m³/h)
 
-| Type de bâtiment | Normal | Alerte |
-|------------------|--------|--------|
-| Maison | 0.013| 0.018 |
-| Appartement | 0.009 | 0.0.013 |
-| Cafe| 0.045 | 0.065|
-| Restaurant | 0.090 | 0.130 |
-| Hotel | 0.250 | 0.375|
-| Immeuble | 0.120 | 0.175|
-| Usine | 0.4 | 0.6 |
+| Type de Bâtiment | Consommation Normale | Seuil d'Alerte |
+| :--- | :---: | :---: |
+| 🏠 **Maison** | 0.013 | 0.018 |
+| 🏢 **Appartement** | 0.009 | 0.013 |
+| ☕ **Café** | 0.045 | 0.065 |
+| 🍽️ **Restaurant** | 0.090 | 0.130 |
+| 🏨 **Hôtel** | 0.250 | 0.375 |
+| 🏙️ **Immeuble** | 0.120 | 0.175 |
+| 🏭 **Usine** | 0.400 | 0.600 |
+
+---
 
 ## 🔌 API Endpoints
 
 | Méthode | Endpoint | Description |
-|---------|----------|-------------|
-| POST | `/auth/login` | Connexion utilisateur |
-| POST | `/auth/register` | Inscription |
-| GET | `/users/{id}` | Profil utilisateur |
-| GET | `/readings/` | Historique des relevés |
-| POST | `/readings/` | Ajouter un relevé |
-| GET | `/alerts/` | Liste des alertes |
-| PUT | `/alerts/{id}` | Marquer alerte comme lue |
-| GET | `/settings/` | Paramètres utilisateur |
+| :---: | :--- | :--- |
+| `POST` | `/auth/login` | Connexion utilisateur et génération de token |
+| `POST` | `/auth/register` | Inscription d'un nouvel utilisateur |
+| `GET` | `/users/{id}` | Récupération des informations du profil |
+| `GET` | `/readings/` | Historique des relevés de consommation |
+| `POST` | `/readings/` | Enregistrement d'un nouveau relevé (Image / Manuel) |
+| `GET` | `/alerts/` | Liste complète des alertes générées |
+| `PUT` | `/alerts/{id}` | Marquer une alerte comme lue |
+| `GET` | `/settings/` | Paramètres et seuils de l'utilisateur |
 
-> > 💡 Documentation Swagger interactive disponible sur `http://127.0.0.1:8000/docs` 
-> après avoir lancé le backend localement.
+> 💡 **Documentation Interactive :** Accédez à Swagger UI sur `http://127.0.0.1:8000/docs` dès le démarrage du serveur backend.
+
+---
 
 ## 🔧 Commandes Utiles
 
 ```bash
-# Lancer les deux serveurs
-# Terminal 1 : Frontend
+# Terminal 1 : Lancer le Frontend
 npm run dev
 
-# Terminal 2 : Backend
+# Terminal 2 : Lancer le Backend FastAPI
 cd aquasense-backend
 py -3.11 -m uvicorn main:app --reload --port 8000
 
-# Réinitialiser la base de données
+# Réinitialiser la base de données (PowerShell)
 Remove-Item -Path "aquasense-backend/data/aquasense.db" -Force
 ```
 
+---
 
-  ## 🗺️ Roadmap
+## 🗺️ Roadmap
 
-- [ ] Support multi-compteurs par utilisateur
-- [ ] Export PDF des rapports de consommation
-- [ ] Application mobile native (React Native)
-- [ ] Remplacement SQLite → PostgreSQL pour la production
-- [ ] Tableau de bord administrateur
+- [ ] 📡 **Multi-compteurs** : Prise en charge de plusieurs compteurs par compte utilisateur.
+- [ ] 📄 **Rapports** : Génération et export PDF automatique des bilans de consommation.
+- [ ] 📱 **Mobile Native** : Migration vers React Native pour iOS & Android.
+- [ ] 🗄 **Base de données** : Migration SQLite vers PostgreSQL en production.
+- [ ] 🎛️️ **Back-Office** : Déploiement d'un tableau de bord administrateur global.
+
+---
 
 ## 📝 Licence
 
-Projet prototype — AquaSense
-  
+Projet prototype — **AquaSense**
+
+```
