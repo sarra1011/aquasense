@@ -1,4 +1,3 @@
-```markdown
 # 🌊 AquaSense — Surveillance Intelligente de l'Eau
 
 > **Application mobile de surveillance intelligente des compteurs d'eau avec détection d'anomalies par IA**
@@ -289,5 +288,3 @@ Remove-Item -Path "aquasense-backend/data/aquasense.db" -Force
 ## 📝 Licence
 
 Projet prototype — **AquaSense**
-
-```
